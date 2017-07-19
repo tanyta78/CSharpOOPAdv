@@ -1,6 +1,4 @@
-﻿using System;
-
-public class Citizen : ICheckable
+﻿public class Citizen : ICheckable
 {
     public Citizen(string name, int age, string id)
     {
