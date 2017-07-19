@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("InterfaceIPersonEx")]
+[assembly: AssemblyTitle("MultipleImplementation")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("InterfaceIPersonEx")]
+[assembly: AssemblyProduct("MultipleImplementation")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("53e1d85c-c339-42ad-a0d6-4cc75f7a85ec")]
+[assembly: Guid("003e1885-2d04-4a80-a230-0499954cfe36")]
 
 // Version information for an assembly consists of the following four values:
 //
