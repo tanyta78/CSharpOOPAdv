@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public class SoldierCreator
 {
-    private List<ISoldier> soldiers;
+    private static List<ISoldier> soldiers;
 
     public SoldierCreator()
     {
@@ -44,21 +45,23 @@ public class SoldierCreator
         var firstName = cmdArgs[1];
         var lastName = cmdArgs[2];
         var salary = double.Parse(cmdArgs[3]);
-        var privates = new List<ISoldier>();
-
-        for (int i = 4; i < cmdArgs.Count; i++)
-        {
-            var privateId = cmdArgs[i];
-            if (soldiers.Select(s => s.ID).ToList().Contains(privateId))
-            {
-                var currentPrivate = soldiers.FirstOrDefault(s => s.ID == privateId);
-                privates.Add(currentPrivate);
-            }
-        }
+        var privates = ExtractPrivates(cmdArgs.Skip(4).ToList());
 
         var soldier = new LeutenantGeneral(id, firstName, lastName, salary, privates);
 
         return soldier;
+    }
+
+    private static IList<ISoldier> ExtractPrivates(List<string>privates)
+    {
+        var list = new List<ISoldier>();
+
+        foreach (var soldier in privates)
+        {
+            list.Add(soldiers.First(s => s.ID == soldier));
+        }
+
+        return list;
     }
 
     public Engineer CreateEngineer(List<string> cmdArgs)
