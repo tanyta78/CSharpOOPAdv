@@ -50,6 +50,10 @@ public class Program
                     }
                     break;
 
+                case "Sort":
+                    myList.Sort();
+                    break;
+
                 case "END":
                     isRunning = false;
                     break;

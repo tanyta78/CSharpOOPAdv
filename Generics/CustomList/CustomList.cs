@@ -4,7 +4,7 @@ using System.Linq;
 
 public class CustomList<T> where T : IComparable<T>
 {
-    private IList<T> data;
+    private List<T> data;
 
     public CustomList()
     {
@@ -13,7 +13,7 @@ public class CustomList<T> where T : IComparable<T>
 
     public int Count => this.Data.Count;
 
-    public IList<T> Data
+    public List<T> Data
     {
         get { return data; }
         set { data = value; }
@@ -67,5 +67,10 @@ public class CustomList<T> where T : IComparable<T>
     public T Min()
     {
         return Data.Min();
+    }
+
+    public void Sort()
+    {
+        Data.Sort((a, b) => a.CompareTo(b));
     }
 }
