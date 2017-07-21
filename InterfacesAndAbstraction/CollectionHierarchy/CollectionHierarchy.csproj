@@ -42,11 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IAddable.cs" />
+    <Compile Include="Interfaces\IRemovable.cs" />
+    <Compile Include="Interfaces\IUsable.cs" />
+    <Compile Include="Models\AddCollection.cs" />
+    <Compile Include="Models\AddRemoveColection.cs" />
+    <Compile Include="Models\MyList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
