@@ -45,6 +45,18 @@ public class Program
                     }
 
                     break;
+
+                case "PrintAll":
+                    try
+                    {
+                        Console.WriteLine(iterator.PrintAll());
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+                    break;
             }
 
             command = Console.ReadLine();
