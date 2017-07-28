@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F9088B61-AF9A-4168-AAA5-FE0982B4AFE5}</ProjectGuid>
+    <ProjectGuid>{832344AF-6A62-4B47-8945-E54A6DF45A13}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ComparingObjects</RootNamespace>
-    <AssemblyName>ComparingObjects</AssemblyName>
+    <RootNamespace>Enumerations_and_Attributes</RootNamespace>
+    <AssemblyName>Enumerations and Attributes</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,9 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Person.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Weekday.cs" />
+    <Compile Include="WeeklyCalendar.cs" />
+    <Compile Include="WeeklyEntry.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F9088B61-AF9A-4168-AAA5-FE0982B4AFE5}</ProjectGuid>
+    <ProjectGuid>{3D907AF9-CB76-46A9-B260-18FC1839E462}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ComparingObjects</RootNamespace>
-    <AssemblyName>ComparingObjects</AssemblyName>
+    <RootNamespace>CreateAttributes</RootNamespace>
+    <AssemblyName>CreateAttributes</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
