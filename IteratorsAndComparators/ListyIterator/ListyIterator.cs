@@ -8,7 +8,7 @@ public class ListyIterator<T> : IEnumerable<T>
     private List<T> collection;
     private int currentIndex;
 
-    public int CurrentIndex { get; set; }
+    // public int CurrentIndex { get; set; }
 
     public ListyIterator(List<T> data)
     {
@@ -19,6 +19,12 @@ public class ListyIterator<T> : IEnumerable<T>
     {
         this.collection = new List<T>();
         this.CurrentIndex = 0;
+    }
+
+    public int CurrentIndex
+    {
+        get { return currentIndex; }
+        set { currentIndex = value; }
     }
 
     public bool Move()

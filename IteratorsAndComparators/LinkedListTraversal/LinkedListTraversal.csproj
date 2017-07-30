@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0712C14B-315E-4A15-AFE0-C0A2DB431F30}</ProjectGuid>
+    <ProjectGuid>{06996E9A-FD52-4CA1-BC3C-F30AB76A5473}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>PetClinic</RootNamespace>
-    <AssemblyName>PetClinic</AssemblyName>
+    <RootNamespace>LinkedListTraversal</RootNamespace>
+    <AssemblyName>LinkedListTraversal</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,11 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clinic.cs" />
-    <Compile Include="ClinicManager.cs" />
-    <Compile Include="Engine.cs" />
-    <Compile Include="Pet.cs" />
-    <Compile Include="StartUp.cs" />
+    <Compile Include="LinkedList.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

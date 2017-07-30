@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 public class Clinic : IEnumerable<Pet>
 {
     private string name;
-    private List<Pet> pets;
+    private Pet[] pets;
     private int rooms;
     private int centerRoom;
-    private int freeRooms;
 
     public Clinic(string name, int rooms)
     {
         this.Name = name;
-        this.Pets = new List<Pet>();
+        this.Pets = new Pet[rooms];
         this.Rooms = rooms;
-        this.FreeRooms = rooms;
-        this.CenterRoom = this.Rooms / 2;
+
+        this.CenterRoom = rooms / 2;
     }
 
     public string Name { get => name; set => name = value; }
-    public List<Pet> Pets { get => pets; set => pets = value; }
+    public Pet[] Pets { get => pets; set => pets = value; }
 
     public int Rooms
     {
@@ -38,31 +39,75 @@ public class Clinic : IEnumerable<Pet>
 
     public int CenterRoom { get => centerRoom; set => centerRoom = value; }
 
-    public int FreeRooms
+    public int CompareTo(Clinic other)
     {
-        get { return freeRooms; }
-        set { freeRooms = value; }
+        return this.Name.CompareTo(other.Name);
     }
 
     public bool Add(Pet pet)
     {
-        int position = this.CenterRoom;
+        for (int i = 0; i <= CenterRoom; i++)
+        {
+            if (this.Pets[CenterRoom - i] == null)
+            {
+                this.Pets[CenterRoom - i] = pet;
+                return true;
+            }
+
+            if (this.Pets[CenterRoom + i] == null)
+            {
+                this.Pets[CenterRoom + i] = pet;
+                return true;
+            }
+        }
+        return false;
     }
 
     public bool Release()
     {
+        for (int i = this.CenterRoom; i < this.Rooms; i++)
+        {
+            if (this.Pets[i] != null)
+            {
+                this.Pets[i] = null;
+                return true;
+            }
+        }
+
+        for (int i = 0; i < this.CenterRoom; i++)
+        {
+            if (this.Pets[i] != null)
+            {
+                this.Pets[i] = null;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public bool HasEmptyRooms()
     {
+        return this.Pets.Any(r => r == null);
     }
 
-    public void Print()
+    public string Print()
     {
-    }
+        var sb = new StringBuilder();
 
-    public void Print(int indexOfRoom)
-    {
+        foreach (Pet pet in pets)
+        {
+            if (pet == null)
+            {
+                sb.AppendLine("Room empty");
+            }
+            else
+            {
+                sb.AppendLine(pet.ToString());
+            }
+        }
+
+        return sb.ToString().Trim();
     }
 
     public IEnumerator<Pet> GetEnumerator()
