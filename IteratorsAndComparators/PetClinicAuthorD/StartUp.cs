@@ -30,17 +30,46 @@ public class StartUp
                 case "Release":
                     ReleasePetFromClinic(cmdArgs[0]);
                     break;
+
+                case "HasEmptyRooms":
+                    CheckForEmptyRooms(cmdArgs[0]);
+                    break;
+
+                case "Print":
+                    PrintInfo(cmdArgs);
+                    break;
             }
         }
+    }
+
+    private static void PrintInfo(List<string> cmdArgs)
+    {
+        var currentClinic = allClinics[cmdArgs[0]];
+        string result = null;
+        if (cmdArgs.Count == 1)
+        {
+            result = currentClinic.Print();
+        }
+        else
+        {
+            int roomIndex = int.Parse(cmdArgs[1]) - 1;
+            result = currentClinic.Print(roomIndex);
+        }
+        Console.WriteLine(result);
+    }
+
+    private static void CheckForEmptyRooms(string clinicName)
+    {
+        var currentClinic = allClinics[clinicName];
+
+        Console.WriteLine(currentClinic.HasEmptyRooms());
     }
 
     private static void ReleasePetFromClinic(string clinicName)
     {
         var currentClinic = allClinics[clinicName];
 
-
         Console.WriteLine(currentClinic.TryReleasePet());
-
     }
 
     private static void AddPetToClinic(string petName, string clinicName)

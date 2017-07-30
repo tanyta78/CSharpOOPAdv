@@ -10,4 +10,9 @@
     public string Name { get; protected set; }
     public int Age { get; protected set; }
     public string Kind { get; protected set; }
+
+    public override string ToString()
+    {
+        return $"{this.Name} {this.Age} {this.Kind}";
+    }
 }
