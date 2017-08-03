@@ -1,9 +1,8 @@
-﻿using System.Linq;
-
-namespace _03BarracksFactory.Core
+﻿namespace _03BarracksFactory.Core
 {
     using System;
     using Contracts;
+    using System.Linq;
 
     internal class Engine : IRunnable
     {
@@ -25,7 +24,6 @@ namespace _03BarracksFactory.Core
                     string commandName = data[0];
                     data = data.Skip(1).ToArray();
                     IExecutable command = this.commandInterpreter.InterpretCommand(data, commandName);
-
                     Console.WriteLine(command.Execute());
                 }
                 catch (Exception e)

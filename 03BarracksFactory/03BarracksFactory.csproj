@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppEntryPoint.cs" />
+    <Compile Include="Attributes\InjectAttribute.cs" />
     <Compile Include="Contracts\IAttacker.cs" />
     <Compile Include="Contracts\ICommandInterpreter.cs" />
     <Compile Include="Contracts\IDestroyable.cs" />

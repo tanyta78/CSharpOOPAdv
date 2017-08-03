@@ -1,9 +1,9 @@
 ﻿namespace _03BarracksFactory.Core.Factories
 {
-    using System;
     using Contracts;
-    using System.Reflection;
+    using System;
     using System.Linq;
+    using System.Reflection;
 
     public class UnitFactory : IUnitFactory
     {

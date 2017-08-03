@@ -1,7 +1,7 @@
 ﻿namespace _03BarracksFactory.Data
 {
-    using System;
     using Contracts;
+    using System;
     using System.Collections.Generic;
     using System.Text;
 
@@ -21,8 +21,7 @@
                 StringBuilder statBuilder = new StringBuilder();
                 foreach (var entry in amountOfUnits)
                 {
-                    string formatedEntry =
-                            string.Format("{0} -> {1}", entry.Key, entry.Value);
+                    string formatedEntry = $"{entry.Key} -> {entry.Value}";
                     statBuilder.AppendLine(formatedEntry);
                 }
 
