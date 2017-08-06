@@ -1,6 +1,10 @@
-﻿public class StartUp
+﻿using Skeleton;
+
+public class StartUp
 {
-    static void Main(string[] args)
+    private static void Main()
     {
+        IReader reader = new ConsoleReader();
+        string input = reader.ReadLine();
     }
 }

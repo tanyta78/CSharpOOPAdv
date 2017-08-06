@@ -1,9 +1,11 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework.Interfaces;
 
 namespace Skeleton.Tests
 {
@@ -26,14 +28,24 @@ namespace Skeleton.Tests
             this.dummy = new Dummy(dummyHealth, dummyExperiance);
         }
 
+        [TearDown]
+        public void CleanUp()
+        {
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed)
+            {
+                //do something
+                //  File.WriteAllText("",);
+            }
+        }
+
         [Test]
         public void DummyLosesHealthAfterAttack()
         {
             //Act
-            axe.Attack(dummy);
+            dummy.TakeAttack(5);
 
             //Assert
-            Assert.AreEqual(1, dummy.Health, "Dummy Health doesn't change after attack");
+            Assert.IsTrue(dummy.Health == 15);
         }
 
         [Test]
@@ -56,6 +68,17 @@ namespace Skeleton.Tests
 
             //Assert
             Assert.AreEqual(dummyExperiance, experiance);
+        }
+
+        [Test]
+        public void AliveDummyCanNotGiveXP()
+        {
+            //Act
+            dummy.TakeAttack(11);
+            var ex = Assert.Throws<InvalidOperationException>(() => dummy.GiveExperience());
+
+            //Assert
+            Assert.That(ex.Message, Is.EqualTo("Target is not dead."));
         }
     }
 }
