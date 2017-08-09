@@ -16,6 +16,13 @@ namespace ExtendedDatabase.Tests
         }
 
         [Test]
+        public void CheckCapacity()
+        {
+            // Assert
+            Assert.AreEqual(16, database.Capacity, "Capacity is not sixteen!");
+        }
+
+        [Test]
         [TestCase(111, "First", 222, "Second")]
         public void DatabaseInitializeConstructorWithCollectionOfPeople(long firstId, string firstUsername, long secondId, string secondUsername)
         {
@@ -31,10 +38,11 @@ namespace ExtendedDatabase.Tests
         }
 
         [Test]
-        public void DatabaseAddPerson()
+        [TestCase(111, "First")]
+        public void AddPerson_ValidCredentials(long firstId, string firstUsername)
         {
             // Arrange
-            var firstPerson = new Person(111L, "Test");
+            var firstPerson = new Person(firstId, firstUsername);
 
             // Act
             this.database.Add(firstPerson);
@@ -42,6 +50,23 @@ namespace ExtendedDatabase.Tests
             // Assert
             Assert.AreEqual(1, database.Count, $"Add {typeof(Person)} doesn't work");
         }
+
+        [Test]
+        public void AddPersonWhenDBIsFull()
+        {
+          // Act
+            for (int i = 0; i < this.database.Capacity; i++)
+            {
+                this.database.Add(new Person(1+i,$"{i}1"));
+            }
+
+            // Assert
+
+            Assert.Throws<InvalidOperationException>(
+                () => database.Add(new Person(this.database.Capacity, $"{this.database.Capacity}1")));
+
+        }
+
 
         [Test]
         [TestCase(111, "First", 222, "Second", 111, "Third")]
@@ -108,6 +133,16 @@ namespace ExtendedDatabase.Tests
         }
 
         [Test]
+        public void RemovePersonFromEmptyDB()
+        {
+            //Act
+            ExtendDatabase db = new ExtendDatabase();
+           
+            // Assert
+            Assert.Throws<InvalidOperationException>(() => db.Remove());
+        }
+
+        [Test]
         [TestCase(111, "First", 222, "Second")]
         public void RemoveLastPersonFromDB(long firstId, string firstUsername, long secondId, string secondUsername)
         {
@@ -171,6 +206,23 @@ namespace ExtendedDatabase.Tests
 
         [Test]
         [TestCase(111, "First", 222, "Second", 333, "Third")]
+        public void FindByUserName(long firstId, string firstUsername, long secondId, string secondUsername, long thirdId, string thirdUsername)
+        {
+            // Arrange
+            var firstPerson = new Person(firstId, firstUsername);
+            var secondPerson = new Person(secondId, secondUsername);
+            var thirdPerson = new Person(thirdId, thirdUsername);
+
+            // Act
+            ExtendDatabase db = new ExtendDatabase(new List<Person>() { firstPerson, secondPerson ,thirdPerson});
+            
+            // Assert
+            Assert.AreEqual(thirdPerson,db.FindByUsername(thirdUsername),"Find by userName do not work !");
+        }
+
+
+        [Test]
+        [TestCase(111, "First", 222, "Second", 333, "Third")]
         public void FindByUserName_PersonNotInDB_ThrowException(long firstId, string firstUsername, long secondId, string secondUsername, long thirdId, string thirdUsername)
         {
             // Arrange
@@ -182,7 +234,7 @@ namespace ExtendedDatabase.Tests
             ExtendDatabase db = new ExtendDatabase(new List<Person>() { firstPerson, secondPerson });
 
             // Assert
-            Assert.Throws<InvalidOperationException>(() => db.FindByUsername(thirdPerson.UserName), $"Searched person doesn't exist in database");
+            Assert.Throws<InvalidOperationException>(() => db.FindByUsername(thirdUsername), $"Searched person doesn't exist in database");
         }
 
         [Test]

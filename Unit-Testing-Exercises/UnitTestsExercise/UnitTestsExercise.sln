@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedDatabase", "Extende
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedDatabase.Tests", "ExtendedDatabase.Tests\ExtendedDatabase.Tests.csproj", "{5C4CDF42-4F15-43E0-9838-7006E464C7C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListIteratorProblem", "ListIterator\ListIteratorProblem.csproj", "{40CCDF37-5BDD-4371-9A08-3474ACD8D966}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListIterator.Tests", "ListIterator.Tests\ListIterator.Tests.csproj", "{55EF8C6A-09A8-49E6-80CD-CFC4F3D8DA85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{5C4CDF42-4F15-43E0-9838-7006E464C7C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C4CDF42-4F15-43E0-9838-7006E464C7C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C4CDF42-4F15-43E0-9838-7006E464C7C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40CCDF37-5BDD-4371-9A08-3474ACD8D966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40CCDF37-5BDD-4371-9A08-3474ACD8D966}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40CCDF37-5BDD-4371-9A08-3474ACD8D966}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40CCDF37-5BDD-4371-9A08-3474ACD8D966}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55EF8C6A-09A8-49E6-80CD-CFC4F3D8DA85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55EF8C6A-09A8-49E6-80CD-CFC4F3D8DA85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55EF8C6A-09A8-49E6-80CD-CFC4F3D8DA85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55EF8C6A-09A8-49E6-80CD-CFC4F3D8DA85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

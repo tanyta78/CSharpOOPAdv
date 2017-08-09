@@ -37,6 +37,18 @@ namespace ExtendedDatabase.Tests
         }
 
         [Test]
+        [TestCase(111, "First")]
+        public void PersonEquals_NullPerson(long personId, string personName)
+        {
+            //  Arrange
+            var personOne = new Person(personId, personName);
+           
+
+            //Assert
+            Assert.IsFalse(personOne.Equals(null));
+        }
+
+        [Test]
         [TestCase(111, "First",222,"Second")]
         public void PersonEquals_TwoNonEqualPeople(long firstId, string firstUsername, long secondId, string secondUsername)
         {
@@ -46,6 +58,30 @@ namespace ExtendedDatabase.Tests
 
             //Assert
             Assert.IsFalse(personOne.Equals(personTwo));
+        }
+
+        [Test]
+        [TestCase(111, "First")]
+        public void PersonGetHashCode_TwoEqualPeople(long personId, string personName)
+        {
+            //  Arrange
+            var personOne = new Person(personId, personName);
+            var personTwo = new Person(personId, personName);
+
+            //Assert
+            Assert.IsTrue(personOne.GetHashCode()==personTwo.GetHashCode());
+        }
+
+        [Test]
+        [TestCase(111, "First", 222, "Second")]
+        public void PersonGetHashCode_TwoNonEqualPeople(long firstId, string firstUsername, long secondId, string secondUsername)
+        {
+            //  Arrange
+            var personOne = new Person(firstId, firstUsername);
+            var personTwo = new Person(secondId, secondUsername);
+
+            //Assert
+            Assert.IsFalse(personOne.GetHashCode() == personTwo.GetHashCode());
         }
     }
 

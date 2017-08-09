@@ -55,6 +55,7 @@ namespace ExtendedDatabase
         public int Capacity
         {
             get { return DefaultCapacity; }
+           
         }
 
         public int Count
