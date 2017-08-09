@@ -24,7 +24,6 @@ namespace DB.Tests
         }
 
         [Test]
-        [TestCase(0)]
         [TestCase(1)]
         [TestCase(6)]
         [TestCase(16)]
