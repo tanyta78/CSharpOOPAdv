@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -10,30 +11,59 @@ namespace _01HarestingFields
     {
         public static void Main()
         {
-            //TODO put your reflection code here
-            Type myType = Type.GetType("_01HarestingFields.HarvestingFields");
 
+            Type myType = Type.GetType("_01HarestingFields.HarvestingFields");
+            var allFields = myType.GetFields(BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public |
+            BindingFlags.NonPublic);
+
+            Dictionary<string, Func<FieldInfo[]>> accModFilters = new Dictionary<string, Func<FieldInfo[]>>()
+            {
+                { "public",()=>allFields.Where(f => f.IsPublic).ToArray()},
+                {"protected", ()=>allFields.Where(f => f.IsFamily).ToArray()},
+                {"private" ,()=>allFields.Where(f => f.IsPrivate).ToArray()},
+                { "all",()=>allFields}
+
+            };
+
+            FieldInfo[] gatheredFields;
             var command = "";
             while ((command = Console.ReadLine()) != "HARVEST")
             {
-                switch (command)
-                {
-                    case "public":
-                        GetPublicFields(myType);
-                        break;
+                //switch (command)
+                //{
+                //    case "public":
+                //       // GetPublicFields(myType);
+                //        gatheredFields = allFields.Where(f => f.IsPublic).ToArray();
+                //        break;
 
-                    case "protected":
-                        GetProtectedFields(myType);
-                        break;
+                //    case "protected":
+                //        // GetProtectedFields(myType);
+                //        gatheredFields = allFields.Where(f => f.IsFamily).ToArray();
+                //        break;
 
-                    case "private":
-                        GetPrivateFields(myType);
-                        break;
+                //    case "private":
+                //        // GetPrivateFields(myType);
+                //        gatheredFields = allFields.Where(f => f.IsPrivate).ToArray();
+                //        break;
 
-                    case "all":
-                        GetAllFields(myType);
-                        break;
-                }
+                //    case "all":
+                //        //  GetAllFields(myType);
+                //        gatheredFields = allFields;
+                //        break;
+                //    default:
+                //        gatheredFields = null;
+                //        break;
+                //}
+
+                gatheredFields = accModFilters[command]();
+
+                string[] result = gatheredFields.Select(f => $"{f.Attributes.ToString().ToLower()} {f.FieldType.Name} {f.Name}").ToArray();
+
+                Console.WriteLine(string.Join(Environment.NewLine, result).Replace("family", "protected"));
+
+                //accModFilters[command]().Select(f => $"{f.Attributes.ToString().ToLower()} {f.FieldType.Name} {f.Name}").ToList()
+                //.ForEach(r=>Console.Writeline(r.Replace("family", "protected"));
+
             }
         }
 

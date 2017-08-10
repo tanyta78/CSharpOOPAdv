@@ -4,21 +4,15 @@ namespace _03BarracksFactory.Core.Commands
 {
     public class ReportCommand : Command
     {
-        private IRepository repository;
-
-        public ReportCommand(string[] data) : base(data)
+        public ReportCommand(string[] data, IRepository repository, IUnitFactory unitFactory) : base(data, repository, unitFactory)
         {
-        }
-
-        public IRepository Repository
-        {
-            get { return repository; }
-            set { repository = value; }
         }
 
         public override string Execute()
         {
             return this.Repository.Statistics;
         }
+
+        
     }
 }

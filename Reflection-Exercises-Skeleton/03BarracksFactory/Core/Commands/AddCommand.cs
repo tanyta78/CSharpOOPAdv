@@ -4,26 +4,12 @@ namespace _03BarracksFactory.Core.Commands
 {
     public class AddCommand : Command
     {
-        private IRepository repository;
-
-        private IUnitFactory unitFactory;
-
-        public AddCommand(string[] data) : base(data)
+        
+        public AddCommand(string[] data,IRepository repository,IUnitFactory unitFactory) : base(data,repository,unitFactory)
         {
         }
 
-        public IRepository Repository
-        {
-            get { return repository; }
-            set { repository = value; }
-        }
-
-        public IUnitFactory UnitFactory
-        {
-            get { return unitFactory; }
-            set { unitFactory = value; }
-        }
-
+        
         public override string Execute()
         {
             string unitType = this.Data[0];

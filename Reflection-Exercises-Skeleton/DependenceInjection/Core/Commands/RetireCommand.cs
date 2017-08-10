@@ -1,10 +1,14 @@
-﻿using _03BarracksFactory.Contracts;
+﻿using DependenceInjection.Attributes;
+using _03BarracksFactory.Contracts;
 
 namespace _03BarracksFactory.Core.Commands
 {
     public class RetireCommand : Command
     {
-        public RetireCommand(string[] data, IRepository repository, IUnitFactory unitFactory) : base(data, repository, unitFactory)
+        [Inject]
+        private IRepository repository;
+
+        public RetireCommand(string[] data) : base(data)
         {
         }
 
@@ -12,7 +16,7 @@ namespace _03BarracksFactory.Core.Commands
         {
             string unitType = this.Data[0];
 
-            this.Repository.RemoveUnit(unitType);
+            this.repository.RemoveUnit(unitType);
 
             return $"{unitType} retired!";
         }

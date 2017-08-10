@@ -9,14 +9,18 @@ namespace _02BlackBoxInteger
     {
         private static void Main(string[] args)
         {
-            //TODO write your solution of Problem 2. Black Box Integer here
+           
 
             Type myType = Type.GetType("_02BlackBoxInteger.BlackBoxInt");
 
             var classMethods = myType.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public |
                                                  BindingFlags.Static);
-
+            //var ctor1 = myType.GetConstructor(BindingFlags.Instance | BindingFlags.NonPublic, Type.DefaultBinder,
+            //    new Type[] { }, null);
+            
             var ctor = myType.GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic)[1];
+            
+            //  var instance = (BlackBoxInt)Activator.CreateInstance(myType, true);= create instance without ctor
 
             var instance = (BlackBoxInt)ctor.Invoke(new object[] { });
 

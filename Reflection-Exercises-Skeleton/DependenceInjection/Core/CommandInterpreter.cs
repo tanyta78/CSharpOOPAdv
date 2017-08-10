@@ -3,6 +3,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using DependenceInjection.Attributes;
 
 namespace _03BarracksFactory.Core
 {
@@ -37,14 +38,34 @@ namespace _03BarracksFactory.Core
 
             object[] commandParams =
             {
-                data,
-                this.repository,
-                this.unitFactory
+                data
             };
 
             IExecutable command = (IExecutable) Activator.CreateInstance(commandType, commandParams);
 
+            command = this.InjectDependencies(command);
+            
            return command;
+        }
+
+        private IExecutable InjectDependencies(IExecutable command)
+        {
+            FieldInfo[] commandFields = command.GetType()
+                .GetFields(BindingFlags.Instance|BindingFlags.NonPublic)
+                .Where(f=>f.GetCustomAttributes<InjectAttribute>() !=null)
+                .ToArray();
+
+            FieldInfo[] interpreterFields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
+
+            foreach (var commandField in commandFields)
+            {
+                commandField.SetValue(command,
+                    interpreterFields
+                    .First(f=>f.FieldType==commandField.FieldType)
+                    .GetValue(this));
+            }
+
+            return command;
         }
     }
 }
