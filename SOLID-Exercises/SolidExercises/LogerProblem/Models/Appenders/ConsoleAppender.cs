@@ -1,25 +1,18 @@
-﻿using System;
-using LoggerProblem.Enums;
-using LoggerProblem.Interfaces;
+﻿using LoggerProblem.Interfaces;
+using System;
 
 namespace LoggerProblem.Models.Appenders
 {
-    public class ConsoleAppender : IAppender
+    public class ConsoleAppender : Appender
     {
-        private ILayout layout;
-
-        public ConsoleAppender(ILayout layout)
+        public ConsoleAppender(ILayout layout) : base(layout)
         {
-            this.Layout = layout;
         }
 
-
-        public ILayout Layout { get; }
-        public ReportLevel ReportLevel { get; set; }
-
-        public void Append(string timeStamp, string reportLevel, string message)
+        public override void Append(string timeStamp, string reportLevel, string message)
         {
-            string formatted = this.Layout.FormatMessage(timeStamp,reportLevel,message);
+            this.Count++;
+            string formatted = this.Layout.FormatMessage(timeStamp, reportLevel, message);
             Console.WriteLine(formatted);
         }
     }

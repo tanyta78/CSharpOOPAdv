@@ -1,10 +1,11 @@
-﻿using System;
-using LoggerProblem.Enums;
+﻿using LoggerProblem.Enums;
 using LoggerProblem.Interfaces;
+using System;
+using System.Text;
 
 namespace LoggerProblem.Models
 {
-    public class Logger:ILogger
+    public class Logger : ILogger
     {
         private IAppender[] appenders;
 
@@ -13,33 +14,32 @@ namespace LoggerProblem.Models
             this.appenders = appenders;
         }
 
-        private void Log(string timeStamp,string reportLevel, string message)
+        private void Log(string timeStamp, string reportLevel, string message)
         {
-            //log
             foreach (var appender in this.appenders)
             {
-                ReportLevel currentReportLevel = (ReportLevel) Enum.Parse(typeof(ReportLevel), reportLevel);
+                ReportLevel currentReportLevel = (ReportLevel)Enum.Parse(typeof(ReportLevel), reportLevel);
 
-                if (appender.ReportLevel>currentReportLevel)
+                if (appender.ReportLevel > currentReportLevel)
                 {
                     continue;
                 }
-                
+
                 appender.Append(timeStamp, reportLevel, message);
             }
         }
 
         public void Error(string timeStamp, string message)
         {
-           this.Log(timeStamp,"Error",message);
+            this.Log(timeStamp, "Error", message);
         }
 
         public void Info(string timeStamp, string message)
         {
-            this.Log(timeStamp,"Info", message);
+            this.Log(timeStamp, "Info", message);
         }
 
-        public void Warn(string timeStamp, string message)
+        public void Warning(string timeStamp, string message)
         {
             this.Log(timeStamp, "Warning", message);
         }
@@ -52,6 +52,19 @@ namespace LoggerProblem.Models
         public void Critical(string timeStamp, string message)
         {
             this.Log(timeStamp, "Critical", message);
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("Logger info");
+            foreach (IAppender appender in this.appenders)
+            {
+                sb.AppendLine(appender.ToString());
+            }
+
+            return sb.ToString();
         }
     }
 }

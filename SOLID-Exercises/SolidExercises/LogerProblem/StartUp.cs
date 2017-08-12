@@ -1,20 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LoggerProblem.Enums;
-using LoggerProblem.Models;
-using LoggerProblem.Models.Appenders;
-using LoggerProblem.Models.Layouts;
+﻿using LoggerProblem.Core;
+using LoggerProblem.Core.IO;
+using LoggerProblem.Factories;
+using LoggerProblem.Interfaces;
 
 namespace LoggerProblem
 {
-   public class StartUp
+    public class StartUp
     {
-       public static void Main()
+        public static void Main()
         {
+            IReader reader = new Reader();
+            IWriter writer = new Writer();
 
+            LayoutFactory layoutFactory = new LayoutFactory();
+            AppenderFactory appenderFactory = new AppenderFactory();
+
+            Controller controller = new Controller(layoutFactory, appenderFactory);
+            Engine engine = new Engine(reader, writer, controller);
+
+            engine.Run();
         }
     }
 }

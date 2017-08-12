@@ -6,7 +6,7 @@
 
         void Info(string timeStamp, string message);
 
-        void Warn(string timeStamp, string message);
+        void Warning(string timeStamp, string message);
 
         void Fatal(string timeStamp, string message);
 

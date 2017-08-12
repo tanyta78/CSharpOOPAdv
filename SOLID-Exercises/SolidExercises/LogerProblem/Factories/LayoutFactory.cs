@@ -1,7 +1,7 @@
-﻿using System;
+﻿using LoggerProblem.Interfaces;
+using System;
 using System.Linq;
 using System.Reflection;
-using LoggerProblem.Interfaces;
 
 namespace LoggerProblem.Factories
 {

@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using LoggerProblem.Enums;
+﻿using LoggerProblem.Enums;
 using LoggerProblem.Factories;
 using LoggerProblem.Interfaces;
 using LoggerProblem.Models;
+using System;
+using System.Globalization;
+using System.Reflection;
 
-namespace LoggerProblem.Engine
+namespace LoggerProblem.Core
 {
     public class Controller
     {
@@ -76,4 +72,3 @@ namespace LoggerProblem.Engine
         }
     }
 }
-

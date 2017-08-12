@@ -11,13 +11,12 @@ namespace LoggerProblem.Models
 
         private StringBuilder sb;
 
-
         public LogFile()
         {
             this.sb = new StringBuilder();
         }
 
-        public int Size{ get;private set; }
+        public int Size { get; private set; }
 
         private int GetLettersSum(string formated)
         {
@@ -29,7 +28,7 @@ namespace LoggerProblem.Models
         public void Write(string formatted)
         {
             this.sb.AppendLine(formatted);
-            File.AppendAllText(DefaultFileName,formatted+Environment.NewLine);
+            File.AppendAllText(DefaultFileName, formatted + Environment.NewLine);
             this.Size = this.GetLettersSum(formatted);
         }
     }

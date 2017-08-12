@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LoggerProblem.Interfaces;
+using System;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using LoggerProblem.Interfaces;
 
 namespace LoggerProblem.Factories
 {
-   public class AppenderFactory
+    public class AppenderFactory
     {
         public IAppender CreateAppender(string appenderName, ILayout layout)
         {

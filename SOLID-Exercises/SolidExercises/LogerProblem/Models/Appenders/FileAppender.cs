@@ -1,26 +1,26 @@
-﻿using LoggerProblem.Enums;
-using LoggerProblem.Interfaces;
+﻿using LoggerProblem.Interfaces;
 
 namespace LoggerProblem.Models.Appenders
 {
-    public class FileAppender:IAppender
+    public class FileAppender : Appender
     {
-        private ILayout layout;
-
-        public FileAppender(ILayout layout)
+        public FileAppender(ILayout layout) : base(layout)
         {
-            this.Layout = layout;
+            this.File = new LogFile();
         }
-
-        public ILayout Layout { get; }
-        public ReportLevel ReportLevel { get; set; }
 
         public LogFile File { get; set; }
 
-        public void Append(string timeStamp, string reportLevel, string message)
+        public override void Append(string timeStamp, string reportLevel, string message)
         {
+            this.Count++;
             string formatted = this.Layout.FormatMessage(timeStamp, reportLevel, message);
             this.File.Write(formatted);
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + $", File size: {this.File.Size}";
         }
     }
 }
