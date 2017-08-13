@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{24B7D77F-AC8F-4B95-BCC4-FD954440986A}</ProjectGuid>
+    <ProjectGuid>{170CA133-9A52-4DC4-9F5D-A24B3D175237}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>WorkForce</RootNamespace>
-    <AssemblyName>WorkForce</AssemblyName>
+    <RootNamespace>KingsGambitExtended</RootNamespace>
+    <AssemblyName>KingsGambitExtended</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,13 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\BaseEmployee.cs" />
-    <Compile Include="Entities\Job.cs" />
-    <Compile Include="Entities\ParttimeEmployee.cs" />
-    <Compile Include="Entities\StandartEmployee.cs" />
-    <Compile Include="JobEventArgs.cs" />
-    <Compile Include="JobsListHandler.cs" />
-    <Compile Include="StartUp.cs" />
+    <Compile Include="Models\Footman.cs" />
+    <Compile Include="Models\King.cs" />
+    <Compile Include="Models\RoyalGuard.cs" />
+    <Compile Include="Models\Soldier.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
