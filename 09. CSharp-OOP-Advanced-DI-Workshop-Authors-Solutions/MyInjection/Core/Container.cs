@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using MyInjection.Repositories;
-using MyInjection.Servicies;
+using MyInjection.Core.RegisteringStrategies;
 
 namespace MyInjection.Core
 {
@@ -11,24 +10,41 @@ namespace MyInjection.Core
     {
         private Dictionary<Type, Type> dependencies;
 
-        public Container()
+        private Dictionary<Type, object> cache;
+
+        public Container(params IRegisteringStrategy[] strategies)
         {
             this.dependencies = new Dictionary<Type, Type>();
-            //only for test
-            //this.dependencies[typeof(IUserService)] = typeof(UserService);
-            //this.dependencies[typeof(IUserRepository)] = typeof(DefaultUserRepository);
-            //this.dependencies[typeof(IPaymentRepository)] = typeof(DefaultPaymentRepository);
-            //this.dependencies[typeof(ISoftUniRepository)] = typeof(DefaultSoftUniRepository);
+            this.cache = new Dictionary<Type, object>();
+            this.InvoleStrategies(strategies);
+        }
+
+        private void InvoleStrategies(IRegisteringStrategy[] strategies)
+        {
+            foreach (IRegisteringStrategy strategy in strategies)
+            {
+                strategy.Register(this.dependencies, this.cache);
+            }
         }
 
         public T Get<T>()
         {
             var interfaceType = typeof(T);
+            if (!interfaceType.GetTypeInfo().IsInterface
+                && !interfaceType.GetTypeInfo().IsAbstract)
+            {
+                throw new Exception("We can only make DI with Interfaces! You should depend on abstractions, man!");
+            }
             return (T)this.Get(interfaceType);
         }
 
         private object Get(Type interfaceType)
         {
+            if (cache.ContainsKey(interfaceType))
+            {
+                return this.cache[interfaceType];
+            }
+
             Type realType = this.dependencies[interfaceType];
 
             ConstructorInfo ctorInfo = realType.GetConstructors().FirstOrDefault();
@@ -49,8 +65,12 @@ namespace MyInjection.Core
             }
 
             // инстанцираме обекта през ConstructorInfo.Invoke(масива с параметри)
-            //връщаме обекта
-            return ctorInfo.Invoke(argsToPassToCtor);
+            //добавяме в кеша и връщаме обекта
+            object objToCashe = ctorInfo.Invoke(argsToPassToCtor);
+
+            this.cache[interfaceType] = objToCashe;
+
+            return objToCashe;
         }
     }
 }

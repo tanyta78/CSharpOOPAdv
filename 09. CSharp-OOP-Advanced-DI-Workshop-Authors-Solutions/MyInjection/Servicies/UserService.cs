@@ -20,6 +20,7 @@ namespace MyInjection.Servicies
             Console.WriteLine("service calls user repo");
             this.userRepo.Print();
             Console.WriteLine("service also calls softuni repo");
+            this.softUniRepo.Oop();
         }
     }
 }

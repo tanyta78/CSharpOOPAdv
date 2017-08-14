@@ -20,7 +20,7 @@ namespace MyInjection.Repositories
 
         public void Print()
         {
-            Console.WriteLine("User repository called!");
+            Console.WriteLine("User repo called!");
             Console.WriteLine("User repo calling payments repo");
             this.paymentsRepo.Pay();
             Console.WriteLine("User repo calling also softuni repo");

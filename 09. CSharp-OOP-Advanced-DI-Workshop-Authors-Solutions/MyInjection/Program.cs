@@ -1,4 +1,7 @@
-﻿using MyInjection.Core;
+﻿using System.Linq.Expressions;
+using System.Reflection;
+using MyInjection.Core;
+using MyInjection.Core.RegisteringStrategies;
 using MyInjection.Repositories;
 using MyInjection.Servicies;
 
@@ -8,12 +11,11 @@ namespace MyInjection
     {
         public static void Main(string[] args)
         {
-            //var paymentRepo = new DefaultPaymentRepository();
-            //var softUniRepo = new DefaultSoftUniRepository(paymentRepo);
-            //var userRepo = new DefaultUserRepository(paymentRepo, softUniRepo);
-            //var userService = new UserService(userRepo, softUniRepo);
+            var container = new Container(
+                new SingleImplementationStrategy(Assembly.GetEntryAssembly()),
+                new ManualRegistratingStrategy().Register<ISoftUniRepository, DefaultSoftUniRepository>()
+                );
 
-            var container = new Container();
             var userService = container.Get<IUserService>();
 
             userService.Rename();

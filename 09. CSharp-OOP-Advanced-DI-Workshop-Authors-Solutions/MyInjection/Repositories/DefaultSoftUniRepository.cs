@@ -15,6 +15,7 @@ namespace MyInjection.Repositories
         {
             Console.WriteLine("softuni repo called");
             Console.WriteLine("calling payment repo");
+            this.paymentRepo.Pay();
         }
     }
 }
