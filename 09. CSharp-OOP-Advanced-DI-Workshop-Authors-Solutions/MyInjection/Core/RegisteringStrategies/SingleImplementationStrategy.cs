@@ -5,16 +5,13 @@ using System.Reflection;
 
 namespace MyInjection.Core.RegisteringStrategies
 {
-    public class SingleImplementationStrategy : IRegisteringStrategy
+    public class SingleImplementationStrategy : AbsstractRegistratingStrategy
     {
-        private Assembly Assembly { get; }
-
-        public SingleImplementationStrategy(Assembly assembly)
+        public SingleImplementationStrategy(Assembly assembly) : base(assembly)
         {
-            this.Assembly = assembly;
         }
 
-        public void Register(IDictionary<Type, Type> types, IDictionary<Type, object> objects)
+        public override void Register(IDictionary<Type, Type> types, IDictionary<Type, object> objects)
         {
             Type[] allTypes = this.Assembly.GetTypes();
 

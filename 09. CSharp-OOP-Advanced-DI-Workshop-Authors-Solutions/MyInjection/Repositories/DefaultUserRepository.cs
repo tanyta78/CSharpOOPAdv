@@ -1,25 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MyInjection.Repositories.Interfaces;
+using System;
+using MyInjection.Core.Attribites;
 
 namespace MyInjection.Repositories
 {
-    public class DefaultUserRepository : IUserRepository
+    [InjectionCandidate]
+    public class DefaultUserRepository : IUserRepository, ISomeInterface
     {
         private readonly IPaymentRepository paymentsRepo;
 
         private readonly ISoftUniRepository softUniRepo;
 
+        private int count;
+
         public DefaultUserRepository(
             IPaymentRepository paymentsRepo,
+            int count,
             ISoftUniRepository softUniRepo)
         {
             this.paymentsRepo = paymentsRepo;
             this.softUniRepo = softUniRepo;
+            this.count = count;
         }
 
         public void Print()
         {
+            Console.WriteLine($"My count is {this.count++}");
             Console.WriteLine("User repo called!");
             Console.WriteLine("User repo calling payments repo");
             this.paymentsRepo.Pay();

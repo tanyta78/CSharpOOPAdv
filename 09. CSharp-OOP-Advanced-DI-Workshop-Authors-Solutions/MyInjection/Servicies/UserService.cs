@@ -1,17 +1,23 @@
 ﻿using MyInjection.Repositories;
 using System;
+using MyInjection.Repositories.Interfaces;
 
 namespace MyInjection.Servicies
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository userRepo;
+        private readonly ISomeInterface userRepo;
         private readonly ISoftUniRepository softUniRepo;
 
-        public UserService(IUserRepository userRepo, ISoftUniRepository softUniRepo)
+        public UserService(ISomeInterface userRepo,
+            ISoftUniRepository softUniRepo,
+            DateTime myDateTime,
+            string dbPath)
         {
             this.userRepo = userRepo;
             this.softUniRepo = softUniRepo;
+            Console.WriteLine(dbPath);
+            Console.WriteLine(myDateTime);
         }
 
         public void Rename()
