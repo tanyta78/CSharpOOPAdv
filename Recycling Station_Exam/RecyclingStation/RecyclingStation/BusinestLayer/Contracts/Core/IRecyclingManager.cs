@@ -2,10 +2,10 @@
 {
    public interface IRecyclingManager
    {
-       void ProcessGarbage(string name, double weight, double volumePerKg, string type);
+       string ProcessGarbage(string name, double weight, double volumePerKg, string type);
 
 
-       void Status();
+       string Status();
 
    }
 }

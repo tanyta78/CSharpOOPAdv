@@ -43,18 +43,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinestLayer\Attributes\BurnableStrategyAttribute.cs" />
+    <Compile Include="BusinestLayer\Attributes\RecyclableStrategyAttribute.cs" />
+    <Compile Include="BusinestLayer\Attributes\StorableStrategyAttribute.cs" />
     <Compile Include="BusinestLayer\Contracts\Core\IEngine.cs" />
     <Compile Include="BusinestLayer\Contracts\Core\IRecyclingManager.cs" />
+    <Compile Include="BusinestLayer\Contracts\Factories\IWasteFactory.cs" />
     <Compile Include="BusinestLayer\Contracts\IO\IReader.cs" />
     <Compile Include="BusinestLayer\Contracts\IO\IWriter.cs" />
     <Compile Include="BusinestLayer\Core\Engine.cs" />
     <Compile Include="BusinestLayer\Core\RecyclingManager.cs" />
+    <Compile Include="BusinestLayer\Data\ProcesingData.cs" />
     <Compile Include="BusinestLayer\Entities\Garbages\BurnableGarbage.cs" />
     <Compile Include="BusinestLayer\Entities\Garbages\Garbage.cs" />
     <Compile Include="BusinestLayer\Entities\Garbages\RecyclableGarbage.cs" />
     <Compile Include="BusinestLayer\Entities\Garbages\StorableGarbage.cs" />
+    <Compile Include="BusinestLayer\Extensions\WasteExtensionsMethods.cs" />
+    <Compile Include="BusinestLayer\Factories\WasteFactory.cs" />
     <Compile Include="BusinestLayer\IO\ConsoleReader.cs" />
     <Compile Include="BusinestLayer\IO\ConsoleWriter.cs" />
+    <Compile Include="BusinestLayer\Strategies\BurnableGarbageDisposalStrategy.cs" />
+    <Compile Include="BusinestLayer\Strategies\GarbageDisposalStrategy.cs" />
+    <Compile Include="BusinestLayer\Strategies\RecycableGarbageDisposalStrategy.cs" />
+    <Compile Include="BusinestLayer\Strategies\StorableGarbageDisposalStrategy.cs" />
     <Compile Include="WasteDisposal\Interfaces\IGarbageProcessor.cs" />
     <Compile Include="WasteDisposal\Attributes\DisposableAttribute.cs" />
     <Compile Include="WasteDisposal\GarbageProcessor.cs" />
@@ -69,9 +80,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BusinestLayer\Contracts\Entities\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

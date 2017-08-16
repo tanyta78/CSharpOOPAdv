@@ -8,7 +8,7 @@
         private  double volumePerKg;
         private  double weight;
 
-        public Garbage(string name, double volumePerKg, double weight)
+        public Garbage(string name,  double weight, double volumePerKg)
         {
             this.Name = name;
             this.VolumePerKg = volumePerKg;

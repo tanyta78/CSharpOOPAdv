@@ -7,27 +7,44 @@
 
     public class GarbageProcessor : IGarbageProcessor
     {
+        private  IStrategyHolder strategyHolder;
+
         public GarbageProcessor(IStrategyHolder strategyHolder)
         {
             this.StrategyHolder = strategyHolder;
         }
 
-        public GarbageProcessor() : this(new StrategyHolder())
-        {
-        }
 
-        public IStrategyHolder StrategyHolder { get; private set; }
+        public IStrategyHolder StrategyHolder
+        {
+            get { return this.strategyHolder; }
+            set { this.strategyHolder = value; }
+        }
 
         public IProcessingData ProcessWaste(IWaste garbage)
         {
             Type type = garbage.GetType();
-            DisposableAttribute disposalAttribute = (DisposableAttribute)type.GetCustomAttributes(true).FirstOrDefault(x => x.GetType() == typeof(DisposableAttribute));
-            IGarbageDisposalStrategy currentStrategy;
-            if (disposalAttribute == null || !this.StrategyHolder.GetDisposalStrategies.TryGetValue(disposalAttribute.GetType(), out currentStrategy))
+            DisposableAttribute disposalAttribute =
+                (DisposableAttribute) type.GetCustomAttributes(typeof(DisposableAttribute), true).FirstOrDefault();
+            
+            if (disposalAttribute == null)
             {
                 throw new ArgumentException(
                     "The passed in garbage does not implement a supported Disposable Strategy Attribute.");
             }
+
+            Type typeOfAttribute = disposalAttribute.GetType();
+
+            if(!this.StrategyHolder.GetDisposalStrategies.ContainsKey(typeOfAttribute))
+            {
+                Type typeOfCorrespondingStrategy = disposalAttribute.CorrespondingStrategyType;
+
+                IGarbageDisposalStrategy activatedStrategy = (IGarbageDisposalStrategy)Activator.CreateInstance(typeOfCorrespondingStrategy);
+
+                this.StrategyHolder.AddStrategy(typeOfAttribute, activatedStrategy);
+            }
+
+            IGarbageDisposalStrategy currentStrategy = this.StrategyHolder.GetDisposalStrategies[typeOfAttribute];
 
             return currentStrategy.ProcessGarbage(garbage);
         }

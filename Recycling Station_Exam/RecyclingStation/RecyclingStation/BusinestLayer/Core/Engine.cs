@@ -1,10 +1,10 @@
 ﻿namespace RecyclingStation.BusinestLayer.Core
 {
+    using RecyclingStation.BusinestLayer.Contracts.Core;
+    using RecyclingStation.BusinestLayer.Contracts.IO;
     using System;
     using System.Linq;
     using System.Reflection;
-    using RecyclingStation.BusinestLayer.Contracts.Core;
-    using RecyclingStation.BusinestLayer.Contracts.IO;
 
     public class Engine : IEngine
     {
@@ -19,41 +19,28 @@
 
         public Engine(IReader reader, IWriter writer, IRecyclingManager recyclingManager)
         {
-            this.Reader = reader;
-            this.Writer = writer;
-            this.RecyclingManager = recyclingManager;
-            this.RecyclingManagerMethods = this.RecyclingManager.GetType().GetMethods();
+            this.reader = reader;
+            this.writer = writer;
+            this.recyclingManager = recyclingManager;
+            this.RecyclingManagerMethods = this.recyclingManager.GetType().GetMethods();
         }
 
-        private IReader Reader
-        {
-            get { return this.reader; }
-            set { this.reader = value; }
-        }
-
-        private IWriter Writer
-        {
-            get { return this.writer; }
-            set { this.writer = value; }
-        }
-
-        public IRecyclingManager RecyclingManager
-        {
-            get { return this.recyclingManager; }
-            set { this.recyclingManager = value; }
-        }
-
-
+        
         public void Run()
         {
             string inputLine;
 
-            while ((inputLine = this.Reader.ReadLine()) != TerminatingCommand)
+            while ((inputLine = this.reader.ReadLine()) != TerminatingCommand)
             {
                 string[] cmdArgs = this.SplitStringByChar(inputLine, ' ');
 
                 string methodName = cmdArgs[0];
-                string[] methodNonParsedParams = this.SplitStringByChar(cmdArgs[1], '|');
+                string[] methodNonParsedParams = default(string[]);
+
+                if (cmdArgs.Length == 2)
+                {
+                    methodNonParsedParams = this.SplitStringByChar(cmdArgs[1], '|');
+                }
 
                 MethodInfo methodToInvoke = this.RecyclingManagerMethods.FirstOrDefault(m => m.Name.Equals(methodName, StringComparison.OrdinalIgnoreCase));
 
@@ -63,24 +50,20 @@
 
                 for (int currentConversion = 0; currentConversion < methodParams.Length; currentConversion++)
                 {
-                    Type currentParamType = methodParams[currentConversion].GetType();
+                    Type currentParamType = methodParams[currentConversion].ParameterType;
 
                     string toConvert = methodNonParsedParams[currentConversion];
 
                     parsedParams[currentConversion] = Convert.ChangeType(toConvert, currentParamType);
-
                 }
 
-                methodToInvoke.Invoke(this.RecyclingManager, parsedParams);
+             object result = methodToInvoke.Invoke(this.recyclingManager, parsedParams);
 
 
-
-
+                this.writer.GatherOutput(result.ToString());
             }
 
-
-
-
+            this.writer.WriteOutput();
         }
 
         private string[] SplitStringByChar(string toSplit, params char[] toSplitBy)
