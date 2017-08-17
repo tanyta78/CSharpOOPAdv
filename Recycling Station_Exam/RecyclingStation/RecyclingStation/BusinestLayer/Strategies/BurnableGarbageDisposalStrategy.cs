@@ -2,7 +2,7 @@
 {
     using RecyclingStation.WasteDisposal.Interfaces;
 
-    class BurnableGarbageDisposalStrategy:GarbageDisposalStrategy
+  public class BurnableGarbageDisposalStrategy:GarbageDisposalStrategy
     {
         protected override double CalculateEnergyBalance(IWaste garbage)
         {

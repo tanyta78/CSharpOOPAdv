@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using RecyclingStation.WasteDisposal.Interfaces;
 
-    internal class StrategyHolder : IStrategyHolder
+    public class StrategyHolder : IStrategyHolder
     {
         private readonly IDictionary<Type, IGarbageDisposalStrategy> strategies;
 
