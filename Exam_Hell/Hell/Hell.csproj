@@ -42,12 +42,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AbstractCommand.cs" />
+    <Compile Include="Commands\HeroCommand.cs" />
+    <Compile Include="Commands\InspectCommand.cs" />
+    <Compile Include="Commands\ItemCommand.cs" />
     <Compile Include="Commands\QuitCommand.cs" />
+    <Compile Include="Commands\RecipeCommand.cs" />
+    <Compile Include="Core\CommandInterpreter.cs" />
     <Compile Include="Core\Engine.cs" />
+    <Compile Include="Factories\ItemFactory.cs" />
     <Compile Include="Core\HeroManager.cs" />
+    <Compile Include="Entities\Heroes\Assassin.cs" />
+    <Compile Include="Entities\Heroes\Barbarian.cs" />
     <Compile Include="Entities\Heroes\AbstractHero.cs" />
+    <Compile Include="Entities\Heroes\Wizard.cs" />
+    <Compile Include="Entities\Items\Item.cs" />
+    <Compile Include="Entities\Items\CommonItem.cs" />
+    <Compile Include="Entities\Items\Recipe.cs" />
     <Compile Include="Entities\Miscellaneous\HeroInventory.cs" />
     <Compile Include="Entities\Miscellaneous\ItemAttribute.cs" />
+    <Compile Include="Interfaces\Core\ICommandInterpreter.cs" />
+    <Compile Include="Interfaces\Core\IEngine.cs" />
+    <Compile Include="Interfaces\Core\IFactory.cs" />
+    <Compile Include="Interfaces\Core\IItemFactory.cs" />
+    <Compile Include="Interfaces\Core\IHeroManager.cs" />
+    <Compile Include="Interfaces\Entities\IHero.cs" />
+    <Compile Include="Interfaces\ICommand.cs" />
+    <Compile Include="Interfaces\IInventory.cs" />
+    <Compile Include="Interfaces\Entities\IItem.cs" />
+    <Compile Include="Interfaces\IO\IInputReader.cs" />
+    <Compile Include="Interfaces\IO\IOutputWriter.cs" />
+    <Compile Include="Interfaces\Entities\IRecipe.cs" />
     <Compile Include="IO\ConsoleReader.cs" />
     <Compile Include="IO\ConsoleWriter.cs" />
     <Compile Include="StartUp.cs" />
@@ -57,8 +82,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

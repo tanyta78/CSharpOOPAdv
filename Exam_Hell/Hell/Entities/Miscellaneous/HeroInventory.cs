@@ -61,10 +61,10 @@ public class HeroInventory : IInventory
             {
                 if (requiredItems.Contains(commonItem.Name))
                 {
-                    requiredItems.Remove(commonItem.Name);
+                   requiredItems.Remove(commonItem.Name);
                 }
             }
-
+          
             if (requiredItems.Count == 0)
             {
                 this.CombineRecipe(recipe);

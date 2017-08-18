@@ -4,15 +4,15 @@ using System.Linq;
 
 public class Engine
 {
-    private InputReader reader;
-    private OutputWriter writer;
-    private HeroManager heroManager;
+    private IInputReader reader;
+    private IOutputWriter writer;
+    private ICommandInterpreter interpreter;
 
-    public Engine(InputReader reader, OutputWriter writer, HeroManager heroManager)
+    public Engine(IInputReader reader, IOutputWriter writer, ICommandInterpreter interpreter)
     {
         this.reader = reader;
         this.writer = writer;
-        this.heroManager = heroManager;
+        this.interpreter = interpreter;
     }
 
     public void Run()
@@ -23,28 +23,21 @@ public class Engine
         {
             string inputLine = this.reader.ReadLine();
             List<string> arguments = this.parseInput(inputLine);
-            this.writer.WriteLine(this.processInput(arguments));
+
+            var result = this.interpreter.InterpretCommand(arguments);
+            this.writer.WriteLine(result);
+
             isRunning = !this.ShouldEnd(inputLine);
         }
     }
 
-    private static List<string> parseInput(string input)
+    private List<string> parseInput(string input)
     {
-        return input.Split(' ').ToList();
+        return input.Split(new []{' '},StringSplitOptions.RemoveEmptyEntries).ToList();
     }
+    
 
-    private static string processInput(List<string> arguments)
-    {
-        string command = arguments[0];
-        arguments.RemoveAt(0);
-
-        Type commandType = Type.GetType(command + "Command");
-        var constructor = commandType.GetConstructor(new Type[] { typeof(IList<string>), typeof(IManager) });
-        Command cmd = (Command)constructor.Invoke(new object[] { arguments, this.heroManager });
-        return cmd.Execute();
-    }
-
-    private static bool ShouldEnd(string inputLine)
+    private bool ShouldEnd(string inputLine)
     {
         return inputLine.Equals("Quit");
     }

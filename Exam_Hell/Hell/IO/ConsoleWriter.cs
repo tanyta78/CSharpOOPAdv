@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class ConsoleWriter
+public class ConsoleWriter:IOutputWriter
 {
     public void WriteLine(string line)
     {

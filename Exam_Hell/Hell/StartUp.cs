@@ -4,9 +4,11 @@
     {
         IInputReader reader = new ConsoleReader();
         IOutputWriter writer = new ConsoleWriter();
-        HeroManager manager = new HeroManager();
+       ItemFactory itemFactory = new ItemFactory();
+        IHeroManager heroManager = new HeroManager(itemFactory);
+        ICommandInterpreter interpreter = new CommandInterpreter(heroManager);
 
-        Engine engine = new Engine(reader, writer, manager);
+        Engine engine = new Engine(reader, writer, interpreter);
         engine.Run();
     }
 }
