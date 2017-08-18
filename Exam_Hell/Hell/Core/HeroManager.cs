@@ -69,7 +69,7 @@ public class HeroManager : IHeroManager
         int damageBonus = int.Parse(arguments[6]);
         var neededItems = arguments.Skip(7).ToList();
 
-        IRecipe recipe = new Recipe(recipeName, strengthBonus, agilityBonus, intelligenceBonus, hitPointsBonus,
+        IRecipe recipe = new RecipeItem(recipeName, strengthBonus, agilityBonus, intelligenceBonus, hitPointsBonus,
             damageBonus, neededItems);
 
         this.heroes[heroName].AddRecipe(recipe);

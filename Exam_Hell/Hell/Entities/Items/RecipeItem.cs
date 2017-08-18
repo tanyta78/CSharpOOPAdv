@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-public class Recipe : IRecipe
+public class RecipeItem : IRecipe
 {
-    public Recipe(string name, int strengthBonus, int agilityBonus, int intelligenceBonus, int hitPointsBonus, int damageBonus, IList<string> requiredItems)
+    public RecipeItem(string name, int strengthBonus, int agilityBonus, int intelligenceBonus, int hitPointsBonus, int damageBonus, IList<string> requiredItems)
     {
         this.Name = name;
         this.StrengthBonus = strengthBonus;

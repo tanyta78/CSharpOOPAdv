@@ -58,7 +58,7 @@
     <Compile Include="Entities\Heroes\Wizard.cs" />
     <Compile Include="Entities\Items\Item.cs" />
     <Compile Include="Entities\Items\CommonItem.cs" />
-    <Compile Include="Entities\Items\Recipe.cs" />
+    <Compile Include="Entities\Items\RecipeItem.cs" />
     <Compile Include="Entities\Miscellaneous\HeroInventory.cs" />
     <Compile Include="Entities\Miscellaneous\ItemAttribute.cs" />
     <Compile Include="Interfaces\Core\ICommandInterpreter.cs" />
