@@ -68,6 +68,11 @@ Tatyana Milanova
         <p><a title="Workshop" href="https://github.com/tanyta78/CSharpOOPAdv/tree/master/09.%20CSharp-OOP-Advanced-DI-Workshop-Authors-Solutions" target="_blank">Workshop</a></p>
         </td>
         </tr>
+          <tr>
+        <td width="50%">
+        <p><a title="Team Project" href="https://github.com/tanyta78/CSharpOOPGame" target="_blank">Team Project</a></p>
+        </td>
+                </tr>
         </tbody>
         </table>
         <hr />
