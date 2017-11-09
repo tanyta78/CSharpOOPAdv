@@ -33,8 +33,8 @@ Tatyana Milanova
         <p><a title="Interfaces and Abstraction" href="https://github.com/tanyta78/CSharpOOPAdv/tree/master/01_InterfacesAndAbstraction" target="_blank">Interfaces and Abstraction</a></p>
         </td>
         <td colspan="2" width="50%">
-        </td>
         <p><a title="Generics" href="https://github.com/tanyta78/CSharpOOPAdv/tree/master/02_Generics" target="_blank">Generics</a></p>
+         </td>
         </tr>
         <tr>
         <td width="50%">
