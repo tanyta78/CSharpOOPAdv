@@ -5,7 +5,7 @@
 <td align="center" width="33%"><img style="text-align: ce;" src="http://conf.softuni.bg/wp-content/uploads/2015/01/SoftUni-Logo-Flat_square-blue-300x235.png" alt="" /></td>
 <td align="center" width="33%">
 <h1><a href="https://softuni.bg/">SoftUni</a></h1>
-<h2>C#OOP Basic</h2>
+<h2>C#OOP Advanced</h2>
 </td>
 <td align="center" width="33%"><img src="https://avatars0.githubusercontent.com/u/22100183?s=460&v=4" alt="" />
 <img src="https://www.linkedin.com/favicon.ico" alt="LinkedIn" />
