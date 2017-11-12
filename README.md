@@ -68,11 +68,28 @@ Tatyana Milanova
         <p><a title="Workshop" href="https://github.com/tanyta78/CSharpOOPAdv/tree/master/09.%20CSharp-OOP-Advanced-DI-Workshop-Authors-Solutions" target="_blank">Workshop</a></p>
         </td>
         </tr>
-          <tr>
+        <tr>
         <td width="50%">
         <p><a title="Team Project" href="https://github.com/tanyta78/CSharpOOPGame" target="_blank">Team Project</a></p>
         </td>
-                </tr>
+        </tr>
+         <tr><td colspan="3" align="center" width="100%"><p>Design Patterns</p></td></tr>
+         <tr>
+            <td width="50%">
+                <p><a title="CommandPattern" href="https://github.com/tanyta78/CSharpOOPAdv/tree/master/ListProcessingProject" target="_blank">Command Pattern</a></p>
+              </td>
+        <td colspan="2" width="50%">
+                <p><a title="CommandPatternAndFactoryPattern" href="https://github.com/tanyta78/CSharpOOPAdv/tree/master/MainFunctionality/SOLID/SOLID" target="_blank">Command Pattern And Factory Pattern</a></p>
+            </td>
+        </tr>     
+                <tr>
+            <td width="50%">
+                <p><a title="Strategy Pattern" href="https://github.com/tanyta78/CSharpOOPAdv/tree/master/MainFunctionality/SOLID/StrategyPattern" target="_blank">Strategy Pattern</a></p>
+              </td>
+        <td colspan="2" width="50%">
+                <p><a title="IteratorPattern" href="https://github.com/tanyta78/CSharpOOPAdv/tree/master/MainFunctionality/SOLID/IteratorPatern" target="_blank">Iterator Pattern</a></p>
+            </td>
+        </tr>    
         </tbody>
         </table>
         <hr />
